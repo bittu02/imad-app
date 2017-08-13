@@ -82,9 +82,6 @@ function createTemplate (data) {
     return htmlTemplate;
     }
 
-
-
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
@@ -93,6 +90,15 @@ var counter = 0;
 app.get('/counter', function(req, res) {
     counter = counter + 1;
     res.send(counter.toString());
+});
+
+var names = [];
+app.get('/submit-name', function(req, res) { //URL: /submit-name?name=xxxx
+   //Get the name from the request
+   var name = req.query.name;       //1000
+   names.push(name);
+   //JSON
+   res.send(JSON.stringify(names));  //1000
 });
 
 app.get('/:articleName', function(req, res) {
@@ -116,14 +122,7 @@ app.get('/ui/madi.png', function (req, res) {
 });
 
 
-var names = [];
-app.get('/submit-name', function(req, res) { //URL: /submit-name?name=xxxx
-   //Get the name from the request
-   var name = req.query.name;       //1000
-   names.push(name);
-   //JSON
-   res.send(JSON.stringify(names));  //1000
-});
+
 
 
 // Do not change port, otherwise your app won't run on IMAD servers
