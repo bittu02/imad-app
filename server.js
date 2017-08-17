@@ -14,9 +14,9 @@ var config = {
 };
 
 
-var app = express(bodyParser.json());
+var app = express();
 app.use(morgan('combined'));
-app.use()
+app.use(bodyParser.json());
 
 function createTemplate (data) {
     var title = data.title;
